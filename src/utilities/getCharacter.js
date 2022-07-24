@@ -1,7 +1,7 @@
 const url = "https://rickandmortyapi.com/api/character";
-const getCharacteres = async (page = 1) => {
+const getCharacters = async (id) => {
   try {
-    const res = await fetch(`${url}?page=${page}`);
+    const res = await fetch(`${url}/${id}`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -9,4 +9,4 @@ const getCharacteres = async (page = 1) => {
   }
 };
 
-export default getCharacteres;
+export default getCharacters;
