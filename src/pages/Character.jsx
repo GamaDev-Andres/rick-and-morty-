@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import HeadSEO from "../components/HeadSEO";
 
 import useGetCharacter from "../hooks/useGetCharacter";
 
@@ -15,6 +16,7 @@ const Character = () => {
   }
   return (
     <div className="flex flex-col md:flex-row items-center justify-center md:justify-between p-4 max-w-7xl mx-auto">
+      <HeadSEO title={`Rick and Morty | ${data?.name || ""}`} />
       <div className="flex flex-col items-center justify-center w-full">
         {!loading && data ? (
           <div className="flex justify-center items-center aspect-square h-36 md:h-48 ">
