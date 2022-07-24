@@ -1,21 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import getCharacteres from "../utilities/getCharacteres";
+import { useParams } from "react-router-dom";
+import getCharacter from "../utilities/getCharacter";
 
-const useGetCharacteres = () => {
-  const [data, setData] = useState([]);
+const useGetCharacter = () => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { id } = useParams();
   const isMounted = useRef(true);
   useEffect(() => {
     isMounted.current = true;
     if (isMounted.current) {
-      if (!searchParams.get("page")) {
-        setSearchParams({ page: 1 });
-      }
       setLoading(true);
-      getCharacteres(searchParams.get("page")).then((res) => {
+      getCharacter(id).then((res) => {
         setLoading(false);
         if (res.error) {
           setError(true);
@@ -31,8 +28,8 @@ const useGetCharacteres = () => {
     return () => {
       isMounted.current = false;
     };
-  }, [searchParams]);
+  }, [id]);
   return { data, loading, error };
 };
 
-export default useGetCharacteres;
+export default useGetCharacter;
