@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import HeadSEO from "../components/HeadSEO";
 
 const Page404NotFound = () => {
   return (
